@@ -1,18 +1,25 @@
-// THIS MAY CHANGE IN THE FUTURE
 // dateDebut = 01/01/2024
 // montant = 400_000
 // jour = 1
 import Possession from "./Possession.js";
-export default class Flux extends Possession {
+export default class Flux {
   // Si salaire => +
   // Si train de vie => -
-  constructor(possesseur, libelle, valeur, dateDebut, dateFin, tauxAmortissement, jour) {
+  constructor(
+    // possesseur,
+    valeur,
+    dateDebut,
+    dateFin,
+    jour,
+    // source,
+    // destination,
+  ) {
     this.valeur = valeur;
+    this.dateDebut = dateDebut;
+    this.dateFin = dateFin;
     this.jour = jour;
     // this.source = source; // null || Compte
     // this.destination = destination; // Compte
-    this.dateDebut = dateDebut;
-    this.dateFin = dateFin;
   }
 
   getValeur(date) {
@@ -26,7 +33,12 @@ export default class Flux extends Possession {
     // calcul montant total
     let valeurTotal = 0;
     if (differenceDate.annee > 0 || differenceDate.mois > 0) {
-      valeurTotal = this.valeur * differenceDate.mois + this.valeur * differenceDate.annee * 12;
+      valeurTotal =
+        this.valeur * differenceDate.mois +
+        this.valeur * differenceDate.annee * 12;
+    }
+    if (date.getDate() >= this.jour) {
+      valeurTotal += this.valeur;
     }
 
     return valeurTotal;
