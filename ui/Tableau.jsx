@@ -1,6 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import BienMateriel from "../models/possessions/BienMateriel.js";
+import Flux from "../models/possessions/Flux.js";
+
 function Possession(props) {
   return (
     <>
@@ -9,31 +12,48 @@ function Possession(props) {
         <td>{props.libelle}</td>
         <td>{props.valeur}</td>
         <td>{props.dateDebut}</td>
-        <td>{props.dateFin}</td>
+        <td>N/A</td>
         <td>{props.tauxAmortissement}</td>
-        <td>342</td>
+        <td>{props.valeurFinal}</td>
       </tr>
     </>
   );
 }
 
-export default function DataTable(props) {
+export default function DataTable() {
   const [possession, setPossession] = useState([]);
-  const [patrimoineValue, setPatrimoineValue] = useState("");
-  var a = useRef([]);
 
   useEffect(() => {
-    if (possession.length == 0) {
-      fetch("../data/data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          a.current = data[1]["data"]["possessions"];
-          setPossession(a.current);
-        })
-        .catch((err) => alert(err));
-      alert(possession);
-    }
-  }, [possession]);
+    fetch("../data/data.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const value = data[1]["data"]["possessions"];
+        // value.map((e) => {
+        //   e.valeurConstante == undefined
+        //     ? new BienMateriel(
+        //         e.possesseur,
+        //         e.libelle,
+        //         e.valeur,
+        //         e.dateDebut,
+        //         e.dateFin,
+        //         e.tauxAmortissement,
+        //       )
+        //     : new Flux(
+        //         e.possesseur,
+        //         e.libelle,
+        //         e.valeurConstante,
+        //         e.dateDebut,
+        //         e.dateFin,
+        //         e.tauxAmortissement,
+        //         e.jour,
+        //       );
+        // });
+        setPossession(value);
+      })
+      .catch((err) => alert(err));
+    // alert(possession);
+    // }
+  }, []);
 
   let id = 0;
 
@@ -52,9 +72,35 @@ export default function DataTable(props) {
           </tr>
         </thead>
         <tbody>
-          {possession.map((item) => {
-            // console.log("this is ", item);
+          {possession.map((e) => {
+            console.log("this is ", e);
             id++;
+
+            // transforme les possessions en BienMateriel/Flux
+            var item;
+            if (e.valeurConstante == undefined) {
+              item = new BienMateriel(
+                e.possesseur,
+                e.libelle,
+                e.valeur,
+                new Date(e.dateDebut),
+                e.dateFin,
+                e.tauxAmortissement,
+              );
+            } else {
+              item = new Flux(
+                e.possesseur,
+                e.libelle,
+                e.valeurConstante,
+                new Date(e.dateDebut),
+                e.dateFin,
+                0,
+                e.jour,
+              );
+            }
+            // alert(item);
+
+            //affiche les datas correctement
             return (
               <Possession
                 key={id}
@@ -65,9 +111,9 @@ export default function DataTable(props) {
                     ? item.valeur
                     : item.valeurConstante
                 }
-                dateDebut={item.dateDebut}
-                dateFin={item.dateFin}
+                dateDebut={item.dateDebut.toString()}
                 tauxAmortissement={item.tauxAmortissement}
+                valeurFinal={item.getValeur(item.dateDebut)}
               />
             );
           })}
