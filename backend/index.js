@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 
 const app = express();
 const port = 3000;
+app.use(express.json());
 
 app.get("/possession", (req, res) => {
   res.set({
@@ -18,7 +19,14 @@ app.get("/possession", (req, res) => {
 });
 
 app.post("/possession", (req, res) => {
-  res.send("You created a possession!");
+  res.set({
+    "Content-Type": "application/json",
+  });
+  const response = {
+    status: 201,
+    possession: { ...req.body, dateFin: null },
+  };
+  res.status(201).send(response);
 });
 
 app.get("/", (req, res) => {
