@@ -3,6 +3,7 @@ import path from "path";
 //fix the "__dirname is not defined error"
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import createPossession from "./createPossession.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,8 +23,11 @@ app.post("/possession", (req, res) => {
   res.set({
     "Content-Type": "application/json",
   });
+
+  createPossession(req.body);
+
   const response = {
-    status: 201,
+    message:"add new possession",
     possession: { ...req.body, dateFin: null },
   };
   res.status(201).send(response);
