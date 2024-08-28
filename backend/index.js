@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import createPossession from "./createPossession.js";
+import updatePossession from "./updatePossession.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -27,14 +28,21 @@ app.post("/possession", (req, res) => {
   createPossession(req.body);
 
   const response = {
-    message:"add new possession",
+    message: "add new possession",
     possession: { ...req.body, dateFin: null },
   };
   res.status(201).send(response);
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.put("/possession/:libelle", (req, res) => {
+  const libelle = req.params.libelle;
+
+  try {
+    updatePossession(libelle, req.body);
+    res.status(200).send({ message: "possession " + libelle + " updated" });
+  } catch (error) {
+    res.status(400).send({ error: error });
+  }
 });
 
 app.get("/", (req, res) => {
