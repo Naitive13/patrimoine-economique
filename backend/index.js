@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import createPossession from "./createPossession.js";
 import updatePossession from "./updatePossession.js";
+import closePossession from "./closePossession.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -45,8 +46,15 @@ app.put("/possession/:libelle", (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.put("/possession/:libelle/close", (req, res) => {
+  const libelle = req.params.libelle;
+
+  try {
+    closePossession(libelle);
+    res.status(200).send({ message: "possession " + libelle + " closed" });
+  } catch (error) {
+    res.status(400).send({ error: error });
+  }
 });
 
 app.get("/", (req, res) => {
