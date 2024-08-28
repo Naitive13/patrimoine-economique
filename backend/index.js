@@ -6,6 +6,7 @@ import { dirname } from "path";
 import createPossession from "./createPossession.js";
 import updatePossession from "./updatePossession.js";
 import closePossession from "./closePossession.js";
+import getValeurPatrimoine from "./getValeurPatrimoine.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -36,6 +37,9 @@ app.post("/possession", (req, res) => {
 });
 
 app.put("/possession/:libelle", (req, res) => {
+  res.set({
+    "Content-Type": "application/json",
+  });
   const libelle = req.params.libelle;
 
   try {
@@ -48,6 +52,9 @@ app.put("/possession/:libelle", (req, res) => {
 
 app.put("/possession/:libelle/close", (req, res) => {
   const libelle = req.params.libelle;
+  res.set({
+    "Content-Type": "application/json",
+  });
 
   try {
     closePossession(libelle);
@@ -57,12 +64,31 @@ app.put("/possession/:libelle/close", (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/patrimoine/:date", (req, res) => {
+  const jour = req.params.date;
+  res.set({
+    "Content-Type": "application/json",
+  });
+
+  try {
+    getValeurPatrimoine(new Date(jour)).then((result) => {
+      res.status(200).send({ valeurPatrimoine: result });
+    });
+  } catch (err) {
+    res.status(400).send({ status: "failed", error: err });
+  }
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/patrimoine/range", (req, res) => {
+  res.set({
+    "Content-Type": "application/json",
+  });
+
+  try {
+    res.status(200);
+  } catch (err) {
+    res.status(400).send({ status: "failed", error: err });
+  }
 });
 
 app.listen(port, () => {
