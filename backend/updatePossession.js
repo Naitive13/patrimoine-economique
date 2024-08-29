@@ -9,7 +9,9 @@ export default async function updatePossession(target, value) {
       if (value.libelle != null) {
         possession.libelle = value.libelle;
       }
-      possession.dateFin = new Date(value.dateFin);
+      if (value.dateFin != null) {
+        possession.dateFin = new Date(value.dateFin);
+      }
     }
   }
   // list[1].data.possessions.push(newPossession);
