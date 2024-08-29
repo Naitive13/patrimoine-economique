@@ -8,7 +8,7 @@ import Patrimoine from "./pages/Patrimoine";
 const route = createBrowserRouter([
   {
     path: "/",
-    element: <Possession />,
+    element: <Layout />,
   },
   {
     path: "/patrimoine",
@@ -23,9 +23,7 @@ const route = createBrowserRouter([
 export default function App() {
   return (
     <>
-      <Layout>
-        <RouterProvider router={route} />
-      </Layout>
+      <RouterProvider router={route} />
     </>
   );
 }
