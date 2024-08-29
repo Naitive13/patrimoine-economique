@@ -1,13 +1,14 @@
 import express from "express";
 import path from "path";
-//fix the "__dirname is not defined error"
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 import createPossession from "./createPossession.js";
 import updatePossession from "./updatePossession.js";
 import closePossession from "./closePossession.js";
 import getValeurPatrimoine from "./getValeurPatrimoine.js";
+import getRange from "./getRange.js";
 
+//fix the "__dirname is not defined error"
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -62,6 +63,14 @@ app.put("/possession/:libelle/close", (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+app.get("/patrimoine/range", (req, res) => {
+  res.set({
+    "Content-Type": "application/json",
+  });
+  getRange(req.body)
+    .then((result) => res.status(200).send({ result: result }))
+    .catch((err) => res.status(400).send({ status: "failed", error: err }));
+});
 
 app.get("/patrimoine/:date", (req, res) => {
   const jour = req.params.date;
@@ -70,23 +79,12 @@ app.get("/patrimoine/:date", (req, res) => {
   });
   getValeurPatrimoine(new Date(jour))
     .then((result) => {
+      // console.log("i was here");
       res.status(200).send({ valeurPatrimoine: result });
     })
     .catch((err) => res.status(400).send({ status: "failed", error: err }));
 });
 
-app.get("/patrimoine/range", (req, res) => {
-  res.set({
-    "Content-Type": "application/json",
-  });
-
-  try {
-    res.status(200);
-  } catch (err) {
-    res.status(400).send({ status: "failed", error: err });
-  }
-});
-
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Patrimoine app listening on port ${port}`);
 });
