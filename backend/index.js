@@ -27,13 +27,13 @@ app.post("/possession", (req, res) => {
     "Content-Type": "application/json",
   });
 
-  createPossession(req.body);
-
-  const response = {
-    message: "add new possession",
-    possession: { ...req.body, dateFin: null },
-  };
-  res.status(201).send(response);
+  createPossession(req.body).then(() => {
+    const response = {
+      message: "add new possession",
+      possession: { ...req.body, dateFin: null },
+    };
+    res.status(201).send(response);
+  });
 });
 
 app.put("/possession/:libelle", (req, res) => {
@@ -42,12 +42,11 @@ app.put("/possession/:libelle", (req, res) => {
   });
   const libelle = req.params.libelle;
 
-  try {
-    updatePossession(libelle, req.body);
-    res.status(200).send({ message: "possession " + libelle + " updated" });
-  } catch (error) {
-    res.status(400).send({ error: error });
-  }
+  updatePossession(libelle, req.body)
+    .then(() => {
+      res.status(200).send({ message: "possession " + libelle + " updated" });
+    })
+    .catch((err) => res.status(400).send({ error: err }));
 });
 
 app.put("/possession/:libelle/close", (req, res) => {
@@ -69,14 +68,11 @@ app.get("/patrimoine/:date", (req, res) => {
   res.set({
     "Content-Type": "application/json",
   });
-
-  try {
-    getValeurPatrimoine(new Date(jour)).then((result) => {
+  getValeurPatrimoine(new Date(jour))
+    .then((result) => {
       res.status(200).send({ valeurPatrimoine: result });
-    });
-  } catch (err) {
-    res.status(400).send({ status: "failed", error: err });
-  }
+    })
+    .catch((err) => res.status(400).send({ status: "failed", error: err }));
 });
 
 app.get("/patrimoine/range", (req, res) => {
