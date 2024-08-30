@@ -1,11 +1,11 @@
 import React from "react";
 import { Form, FloatingLabel } from "react-bootstrap";
 
-export default function DayPicker({ ref }) {
+export default function DayPicker({ jour }) {
   return (
     <>
       <FloatingLabel label="jour">
-        <Form.Select aria-label="1" ref={ref}>
+        <Form.Select aria-label="1" ref={jour}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
