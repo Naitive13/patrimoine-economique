@@ -35,6 +35,9 @@ export default function List({ possessions }) {
             <th>
               <h3>Amortissement</h3>
             </th>
+            <th>
+              <h3>Options</h3>
+            </th>
           </tr>
         </thead>
         <tbody>

@@ -8,11 +8,10 @@ export default function Possession() {
     fetch("http://localhost:3000/possession")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const item = data[1].data.possessions;
         setpossessions(item);
       });
-  }, []);
+  });
 
   return (
     <>

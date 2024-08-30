@@ -1,4 +1,5 @@
 import React from "react";
+import CloseButton from "./CloseButton";
 export default function RowPossession({ index, possession }) {
   return (
     <>
@@ -20,6 +21,9 @@ export default function RowPossession({ index, possession }) {
           {possession.tauxAmortissement
             ? `${possession.tauxAmortissement}%`
             : "0%"}
+        </td>
+        <td>
+          <CloseButton target={possession.libelle} />
         </td>
       </tr>
     </>
