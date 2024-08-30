@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import cors from "cors";
 import createPossession from "./createPossession.js";
 import updatePossession from "./updatePossession.js";
 import closePossession from "./closePossession.js";
@@ -15,6 +16,7 @@ const __dirname = dirname(__filename);
 const app = express();
 const port = 3000;
 app.use(express.json());
+app.use(cors());
 
 app.get("/possession", (req, res) => {
   res.set({
@@ -63,7 +65,7 @@ app.put("/possession/:libelle/close", (req, res) => {
     res.status(400).send({ error: error });
   }
 });
-app.get("/patrimoine/range", (req, res) => {
+app.post("/patrimoine/range", (req, res) => {
   res.set({
     "Content-Type": "application/json",
   });
