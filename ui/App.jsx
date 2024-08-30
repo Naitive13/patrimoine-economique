@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "./layout";
 import Possession from "./pages/Possession";
 import Patrimoine from "./pages/Patrimoine";
+import PatrimoineDate from "./pages/Patrimoine-date";
 
 const route = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const route = createBrowserRouter([
   {
     path: "/patrimoine/range",
     element: <Patrimoine />,
+  },
+  {
+    path: "/patrimoine/:date",
+    element: <PatrimoineDate />,
   },
   {
     path: "/possession",
