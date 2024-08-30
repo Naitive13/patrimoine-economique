@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export default function OrangeButton({ text, click }) {
   return (

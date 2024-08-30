@@ -1,11 +1,3 @@
-// const response = await fetch("http://localhost:3000/patrimoine/range", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({ dateDebut, dateFin, jour }),
-// });
-
 import React, { useRef } from "react";
 import { Col, FloatingLabel, Container, Row } from "react-bootstrap";
 import InputField from "../../components/InputField";

@@ -25,8 +25,7 @@ export default function Create() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req),
     });
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
   }
   return (
     <Layout>

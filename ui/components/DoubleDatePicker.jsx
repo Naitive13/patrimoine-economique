@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, FloatingLabel, Row } from "react-bootstrap";
+import { Col, FloatingLabel } from "react-bootstrap";
 import DatePicker from "./DatePicker";
 
 export default function DoubleDatePicker({ date1, date2 }) {
