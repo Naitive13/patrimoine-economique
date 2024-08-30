@@ -6,6 +6,7 @@ import Possession from "./pages/Possession";
 import Patrimoine from "./pages/Patrimoine";
 import PatrimoineDate from "./pages/Patrimoine-date";
 import Update from "./pages/Update";
+import Create from "./pages/Create";
 
 const route = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const route = createBrowserRouter([
   {
     path: "/possession/update",
     element: <Update />,
+  },
+  {
+    path: "/possession/create",
+    element: <Create />,
   },
   {
     path: "/possession",
