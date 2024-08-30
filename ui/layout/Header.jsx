@@ -11,7 +11,7 @@ export default function Header() {
         <Container fluid>
           <NavbarCollapse className="ms-5">
             <Nav variant="underline" defaultActiveKey="/Patrimoine">
-              <LinkContainer to="/patrimoine">
+              <LinkContainer to="/patrimoine/range">
                 <Nav.Link>Patrimoine</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/possession">

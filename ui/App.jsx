@@ -11,7 +11,7 @@ const route = createBrowserRouter([
     element: <Layout />,
   },
   {
-    path: "/patrimoine",
+    path: "/patrimoine/range",
     element: <Patrimoine />,
   },
   {
