@@ -20,6 +20,10 @@ export default function Header() {
               <LinkContainer to="/possession">
                 <Nav.Link>Possessions</Nav.Link>
               </LinkContainer>
+
+              <LinkContainer to="/possession/update">
+                <Nav.Link>Edition</Nav.Link>
+              </LinkContainer>
             </Nav>
           </NavbarCollapse>
           <Navbar.Brand>

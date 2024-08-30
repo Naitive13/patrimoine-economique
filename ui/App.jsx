@@ -5,6 +5,7 @@ import Layout from "./layout";
 import Possession from "./pages/Possession";
 import Patrimoine from "./pages/Patrimoine";
 import PatrimoineDate from "./pages/Patrimoine-date";
+import Update from "./pages/Update";
 
 const route = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const route = createBrowserRouter([
   {
     path: "/patrimoine/:date",
     element: <PatrimoineDate />,
+  },
+  {
+    path: "/possession/update",
+    element: <Update />,
   },
   {
     path: "/possession",
