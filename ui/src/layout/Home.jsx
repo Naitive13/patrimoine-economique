@@ -4,9 +4,7 @@ import { Container, Row } from "react-bootstrap";
 export default function Home() {
   return (
     <>
-      <Container fluid>
-        <Row></Row>
-      </Container>
+      <h1>Bonjour, ceci est la page d'acceuil du site Patrimoine</h1>
     </>
   );
 }
