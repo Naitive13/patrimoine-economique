@@ -1,5 +1,8 @@
 import React from "react";
 import CloseButton from "./CloseButton";
+import OrangeButton from "./OrangeButton";
+import { LinkContainer } from "react-router-bootstrap";
+import { Nav } from "react-bootstrap";
 export default function RowPossession({ index, possession }) {
   return (
     <>
@@ -24,6 +27,13 @@ export default function RowPossession({ index, possession }) {
         </td>
         <td>
           <CloseButton target={possession.libelle} />
+        </td>
+        <td>
+          <LinkContainer to={`/possession/${possession.libelle}/update`}>
+            <Nav.Link>
+              <OrangeButton text="Modifier" />
+            </Nav.Link>
+          </LinkContainer>
         </td>
       </tr>
     </>

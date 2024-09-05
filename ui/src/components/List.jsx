@@ -36,7 +36,10 @@ export default function List({ possessions }) {
               <h3>Amortissement</h3>
             </th>
             <th>
-              <h3>Options</h3>
+              <h3>Cloturer</h3>
+            </th>
+            <th>
+              <h3>Modifier</h3>
             </th>
           </tr>
         </thead>

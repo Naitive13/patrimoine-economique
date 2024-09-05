@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../layout";
 import List from "../../components/List";
+import { LinkContainer } from "react-router-bootstrap";
+import { Col, Container, Nav, Row } from "react-bootstrap";
+import OrangeButton from "../../components/OrangeButton";
+import MarginTop from "../../components/MarginTop";
 
 export default function Possession() {
   const [possessions, setpossessions] = useState([]);
@@ -16,7 +20,22 @@ export default function Possession() {
   return (
     <>
       <Layout>
-        <List possessions={possessions} />
+        <Container>
+          <MarginTop />
+          <Row>
+            <Col xs={4}></Col>
+            <Col xs={5}>
+              <LinkContainer to="/possession/create">
+                <Nav.Link>
+                  <OrangeButton text="Ajouter une possession" />
+                </Nav.Link>
+              </LinkContainer>
+            </Col>
+          </Row>
+
+          <MarginTop />
+          <List possessions={possessions} />
+        </Container>
       </Layout>
     </>
   );

@@ -17,7 +17,7 @@ const route = createBrowserRouter([
     element: <Patrimoine />,
   },
   {
-    path: "/possession/update",
+    path: "/possession/:libelle/update",
     element: <Update />,
   },
   {
