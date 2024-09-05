@@ -6,6 +6,7 @@ import DatePicker from "../../components/DatePicker";
 import MarginTop from "../../components/MarginTop";
 import OrangeButton from "../../components/OrangeButton";
 import InputNumber from "../../components/InputNumber";
+import createPossession from "./createPossession";
 
 export default function Create() {
   const libelle = useRef();
@@ -13,20 +14,6 @@ export default function Create() {
   const valeur = useRef();
   const taux = useRef();
 
-  async function createPossession() {
-    const req = {
-      libelle: libelle.current.value,
-      dateDebut: dateDebut.current.value,
-      valeur: valeur.current.value,
-      taux: taux.current.value,
-    };
-    const response = await fetch("http://localhost:3000/possession/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(req),
-    });
-    // const data = await response.json();
-  }
   return (
     <Layout>
       <Container>
@@ -65,7 +52,7 @@ export default function Create() {
           <Col>
             <OrangeButton
               text={"Ajouter La Possession"}
-              click={() => createPossession()}
+              click={() => createPossession(libelle, dateDebut, valeur, taux)}
             />
           </Col>
         </Row>
