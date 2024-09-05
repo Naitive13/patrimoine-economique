@@ -22,7 +22,7 @@ app.get("/possession", (req, res) => {
   res.set({
     "Content-Type": "application/json",
   });
-  res.sendFile(path.join(__dirname, "../data/data.json"));
+  res.sendFile(path.join(__dirname, "./data/data.json"));
 });
 
 app.post("/possession", (req, res) => {
