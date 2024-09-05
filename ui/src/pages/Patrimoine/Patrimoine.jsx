@@ -11,6 +11,7 @@ import DayPicker from "../../components/DayPicker";
 import fetchRange from "./fetchRange";
 import fakeInfo from "./fakeChartData";
 import PatrimoineDate from "../../components/Patrimoine-date";
+import chartData from "./chartData";
 
 export default function Patrimoine() {
   const [chartInfo, setchartInfo] = useState(fakeInfo);
@@ -21,19 +22,7 @@ export default function Patrimoine() {
   const newData = async () => {
     const result = await fetchRange(jour, dateDebut, dateFin);
     console.log(result);
-    const newValues = {
-      labels: Object.keys(result),
-      datasets: [
-        {
-          label: "Patrimoine",
-          data: Object.values(result),
-          fill: false,
-          borderColor: "#FFC00677",
-          tension: 0.4,
-          pointBackgroundColor: "#000000bb",
-        },
-      ],
-    };
+    const newValues = chartData(result);
     setchartInfo(newValues);
   };
 
