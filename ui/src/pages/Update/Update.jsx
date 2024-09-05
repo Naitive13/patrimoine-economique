@@ -6,25 +6,13 @@ import DatePicker from "../../components/DatePicker";
 import MarginTop from "../../components/MarginTop";
 import OrangeButton from "../../components/OrangeButton";
 import { useLocation } from "react-router";
+import changePossession from "./changePossession";
 
 export default function Update() {
   const newLibelle = useRef();
   const dateFin = useRef();
   const target = useLocation().pathname.split("/")[2];
 
-  async function changePossession() {
-    const req = {
-      libelle: newLibelle.current.value || null,
-      dateFin: dateFin.current.value || null,
-    };
-    const response = await fetch("http://localhost:3000/possession/" + target, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(req),
-    });
-    const data = await response.json();
-    console.log(data);
-  }
   return (
     <Layout>
       <Container>
@@ -49,7 +37,7 @@ export default function Update() {
           <Col>
             <OrangeButton
               text={"Modifier La Possession"}
-              click={() => changePossession()}
+              click={() => changePossession(newLibelle, dateFin, target)}
             />
           </Col>
         </Row>
