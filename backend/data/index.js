@@ -1,4 +1,11 @@
 import fs from "node:fs/promises";
+import path from "path";
+
+//fix the "__dirname is not defined error"
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 async function readFile(path) {
   try {
@@ -31,7 +38,9 @@ async function writeFile(path, data) {
   }
 }
 
-export { readFile, writeFile };
+const dataPath = path.join(__dirname, "./data.json");
+
+export { readFile, writeFile, dataPath };
 /*
 TODO:
 react bootstrap

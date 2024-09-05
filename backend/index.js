@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import cors from "cors";
+import { dataPath } from "./data/index.js";
 import createPossession from "./createPossession.js";
 import updatePossession from "./updatePossession.js";
 import closePossession from "./closePossession.js";
@@ -22,7 +23,7 @@ app.get("/possession", (req, res) => {
   res.set({
     "Content-Type": "application/json",
   });
-  res.sendFile(path.join(__dirname, "./data/data.json"));
+  res.sendFile(dataPath);
 });
 
 app.post("/possession", (req, res) => {
