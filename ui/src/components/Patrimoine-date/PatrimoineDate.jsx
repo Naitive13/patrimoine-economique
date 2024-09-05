@@ -16,18 +16,14 @@ export default function PatrimoineDate() {
   }
 
   return (
-    <Layout>
+    <>
       <Row>
-        <MarginTop />
-        <Col xs={3}>
+        <Col xs={3} className="mt-3">
           <DatePicker date={date} />
         </Col>
-        <Col xs={6}>
-          <h3 className="mt-0">{`Votre patrimoine est de: ${patrimoine}`}</h3>
+        <Col xs={5}>
+          <h3 className="mt-3">{`Votre patrimoine est de: ${patrimoine}`}</h3>
         </Col>
-      </Row>
-      <Row>
-        <MarginTop />
         <Col xs={4}>
           <OrangeButton
             click={() => clickUpdate()}
@@ -35,6 +31,7 @@ export default function PatrimoineDate() {
           />{" "}
         </Col>
       </Row>
-    </Layout>
+      <Row></Row>
+    </>
   );
 }

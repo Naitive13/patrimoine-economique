@@ -10,6 +10,7 @@ import Graph from "../../components/Graph";
 import DayPicker from "../../components/DayPicker";
 import fetchRange from "./fetchRange";
 import fakeInfo from "./fakeChartData";
+import PatrimoineDate from "../../components/Patrimoine-date";
 
 export default function Patrimoine() {
   const [chartInfo, setchartInfo] = useState(fakeInfo);
@@ -41,18 +42,22 @@ export default function Patrimoine() {
       <Layout>
         <Container fluid>
           <MarginTop />
+          <PatrimoineDate />
+          <hr />
+          <MarginTop />
           <Row>
-            <Col className="text-center" xs={6}>
+            <Col xs={1}>
+              <DayPicker jour={jour} />
+            </Col>
+            <DoubleDatePicker date1={dateDebut} date2={dateFin} />
+
+            <Col xs={2}></Col>
+            <Col className="text-center" xs={5}>
               <OrangeButton
                 text={"Obtenir Un Graphe Du Patrimoine"}
                 click={() => newData()}
               />
             </Col>
-            <Col xs={1}></Col>
-            <Col xs={1}>
-              <DayPicker jour={jour} />
-            </Col>
-            <DoubleDatePicker date1={dateDebut} date2={dateFin} />
           </Row>
           <MarginTop />
           <Graph data={chartInfo} />
