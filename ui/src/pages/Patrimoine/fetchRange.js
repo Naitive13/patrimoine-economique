@@ -1,4 +1,5 @@
 export default async function fetchRange(jour, dateDebut, dateFin) {
+  const url = import.meta.env.VITE_APP_API_URL;
   const start = dateDebut.current.value;
   const end = dateFin.current.value;
   const day = jour.current.value;
@@ -13,7 +14,7 @@ export default async function fetchRange(jour, dateDebut, dateFin) {
     };
     // alert(start);
     try {
-      const response = await fetch("http://localhost:3000/patrimoine/range", {
+      const response = await fetch(url + "/patrimoine/range", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

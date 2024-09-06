@@ -7,9 +7,10 @@ import OrangeButton from "../../components/OrangeButton";
 import MarginTop from "../../components/MarginTop";
 
 export default function Possession() {
+  const url = import.meta.env.VITE_APP_API_URL;
   const [possessions, setpossessions] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/possession")
+    fetch(url + "/possession")
       .then((res) => res.json())
       .then((data) => {
         const item = data[1].data.possessions;

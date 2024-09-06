@@ -4,10 +4,10 @@ import { Button } from "react-bootstrap";
 export default function CloseButton({ target }) {
   async function closePossession(libelle) {
     try {
-      const response = await fetch(
-        "http://localhost:3000/possession/" + libelle + "/close",
-        { method: "PUT" },
-      );
+      const url = import.meta.env.VITE_APP_API_URL;
+      const response = await fetch(url + "/possession/" + libelle + "/close", {
+        method: "PUT",
+      });
       const data = await response.json();
       alert(data.message);
     } catch (err) {

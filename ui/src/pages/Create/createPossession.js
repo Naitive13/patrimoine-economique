@@ -10,7 +10,8 @@ export default async function createPossession(
     valeur: valeur.current.value,
     taux: taux.current.value,
   };
-  const response = await fetch("http://localhost:3000/possession/", {
+  const url = import.meta.env.VITE_APP_API_URL;
+  const response = await fetch(url + "/possession/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req),
